@@ -50,15 +50,13 @@ class Phonebook extends Component {
 
   render() {
     const normalizedFilter = this.state.filter.toLocaleLowerCase();
-    const filteredContacts = this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
+    // const filteredContacts = this.state.contacts.filter(contact =>
+    //   contact.name.toLowerCase().includes(normalizedFilter),
+    // );
     return (
       <>
         <Form onSubmit={this.addContact} />
-        {this.state.contacts.length > 0 && (
-          <ContactList contacts={filteredContacts} onDeleteContact={this.deleteContact} />
-        )}
+        {this.state.contacts.length > 0 && <ContactList onDeleteContact={this.deleteContact} />}
         {/* {this.state.contacts.length > 2 && (
           <Filter value={this.state.filter} onChange={this.changeFilter} />
         )} */}
