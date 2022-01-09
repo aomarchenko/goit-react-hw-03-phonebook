@@ -59,7 +59,7 @@ class Phonebook extends Component {
         {this.state.contacts.length > 0 && (
           <ContactList contacts={filteredContacts} onDeleteContact={this.deleteContact} />
         )}
-        {this.state.contacts.length > 1 && (
+        {this.state.contacts.length > 2 && (
           <Filter value={this.state.filter} onChange={this.changeFilter} />
         )}
       </>
