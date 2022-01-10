@@ -4,7 +4,6 @@ import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 import React, { Component } from 'react';
 import shortid from 'shortid';
-
 class Phonebook extends Component {
   state = {
     contacts: [],
@@ -18,9 +17,12 @@ class Phonebook extends Component {
     }
   }
   componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-    this.setState({ contacts: parsedContacts });
+    if (localStorage.getItem('contacts') !== null) {
+      const contacts = localStorage.getItem('contacts');
+      const parcedContacts = JSON.parse(contacts);
+      this.setState({ contacts: parcedContacts });
+      console.log(parcedContacts);
+    }
   }
 
   addContact = (name, number) => {
@@ -29,14 +31,12 @@ class Phonebook extends Component {
       name,
       number,
     };
-
     if (
       this.state.contacts.map(contact => contact.name.toLowerCase()).includes(name.toLowerCase())
     ) {
       alert(`${name} is already in contacts`);
       return;
     }
-
     this.setState(prevState => ({ contacts: [...prevState.contacts, newContact] }));
   };
   deleteContact = contactId => {
